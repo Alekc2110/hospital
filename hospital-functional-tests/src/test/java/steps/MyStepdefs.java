@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class MyStepdefs {
     @Given("I set get request for api endpoint {string}")
     public void iSetGetRequestForApiEndpoint(String url) {
+       // open();
     }
 
     @When("I send get http request")
