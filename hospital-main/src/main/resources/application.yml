@@ -1,0 +1,22 @@
+spring:
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/hospital
+    username: postgres
+    password: root
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+
+
+  # JPA properties
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    defer-datasource-initialization: false
+    properties:
+      hibernate.format_sql: true

@@ -1,0 +1,25 @@
+package com.my.project.petclinic.hospital.api.dto;
+
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class PatientDto {
+
+    private Long id;
+    private String name;
+    private String surName;
+    private Integer age;
+
+    private List<DoctorDto> doctorDtoList;
+}
