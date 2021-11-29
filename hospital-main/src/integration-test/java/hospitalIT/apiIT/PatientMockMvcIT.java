@@ -1,11 +1,8 @@
 package hospitalIT.apiIT;
 
 import com.my.project.petclinic.hospital.HospitalApplication;
-import com.my.project.petclinic.hospital.domain.model.Doctor;
 import com.my.project.petclinic.hospital.domain.model.Patient;
-import com.my.project.petclinic.hospital.domain.service.DoctorService;
 import com.my.project.petclinic.hospital.domain.service.PatientService;
-import com.my.project.petclinic.hospital.persistence.DoctorRepository;
 import com.my.project.petclinic.hospital.persistence.PatientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,11 +23,9 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest(classes = HospitalApplication.class)
 public class PatientMockMvcIT {
