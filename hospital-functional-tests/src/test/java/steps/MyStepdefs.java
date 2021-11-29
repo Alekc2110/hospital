@@ -5,12 +5,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class MyStepdefs {
     @Given("I set get request for api endpoint {string}")
     public void iSetGetRequestForApiEndpoint(String url) {
-       // open();
+
     }
 
     @When("I send get http request")
