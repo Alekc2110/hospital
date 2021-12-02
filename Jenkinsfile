@@ -26,6 +26,12 @@ pipeline {
 
                         }
         }
+         stage('hospital build') {
+                        steps {
+                         echo "building project"
+                         bat "mvn -pl hospital-main clean package"
+                                }
+         }
 
     }
 }
