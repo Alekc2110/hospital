@@ -22,6 +22,8 @@ pipeline {
                         steps {
                          echo "starts running functional testing"
                          bat "mvn -Dtest=RunnerTest test"
+
+
                         }
         }
 
