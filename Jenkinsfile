@@ -21,7 +21,7 @@ pipeline {
         stage('functional cucumber tests') {
                         steps {
                          echo "starts running functional testing"
-                         bat "mvn -Dtest=RunnerTest test"
+                         bat "mvn -pl hospital-functional-tests -Dtest=RunnerTest test"
 
 
                         }
