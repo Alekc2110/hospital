@@ -17,5 +17,13 @@ pipeline {
                         bat "mvn -Pfailsafe verify"
                     }
         }
+
+        stage('functional cucumber tests') {
+                        steps {
+                         echo "starts running functional testing"
+                         bat "mvn -Dtest=RunnerTest test"
+                        }
+        }
+
     }
 }

@@ -1,22 +1,32 @@
 package hospitalIT.apiIT;
 
 import com.my.project.petclinic.hospital.HospitalApplication;
+import com.my.project.petclinic.hospital.api.config.WebMvcConfig;
+import com.my.project.petclinic.hospital.api.controller.DoctorController;
 import com.my.project.petclinic.hospital.domain.model.Doctor;
 import com.my.project.petclinic.hospital.domain.service.DoctorService;
 import com.my.project.petclinic.hospital.persistence.DoctorRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import ma.glasnost.orika.MapperFacade;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -30,20 +40,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = HospitalApplication.class)
 public class DoctorMockMvcIT {
 
-    @Autowired
-    private WebApplicationContext context;
-
     @MockBean
     private DoctorRepository repository;
 
     @SpyBean
     private DoctorService doctorService;
 
+    @Autowired
+    @Qualifier("controllerOrikaMapper")
+    MapperFacade mapper;
+
     private MockMvc mockMvc;
 
     @BeforeEach
     public void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(new DoctorController(doctorService, mapper)).build();
 
     }
 
