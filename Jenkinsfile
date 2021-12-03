@@ -26,11 +26,18 @@ pipeline {
 
                         }
         }
-         stage('hospital build') {
+         stage('hospital build jar') {
                         steps {
                          echo "building project"
                          bat "mvn -pl hospital-main clean package"
                                }
+         }
+
+         stage('docker build image') {
+                        steps {
+                         echo "building docker image"
+                         bat "docker build ."
+                              }
          }
 
     }
