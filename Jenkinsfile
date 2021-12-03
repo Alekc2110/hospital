@@ -33,11 +33,18 @@ pipeline {
                                }
          }
 
-         stage('docker build image') {
+         stage('build docker image') {
                         steps {
                          echo "building docker image"
-                         bat "docker build ."
+                         bat "docker build . --name alekckorsh/hospital"
                               }
+         }
+
+         stage('deploy docker image') {
+                                 steps {
+                                  echo "building docker image"
+                                  bat "docker push alekckorsh/hospital"
+                                       }
          }
 
     }
