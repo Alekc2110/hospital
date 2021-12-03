@@ -36,7 +36,7 @@ pipeline {
          stage('build docker image') {
                         steps {
                          echo "building docker image"
-                         bat "docker build . --name alekckorsh/hospital"
+                         bat "docker build . -t alekckorsh/hospital"
                               }
          }
 
