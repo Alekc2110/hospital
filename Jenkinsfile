@@ -44,6 +44,8 @@ pipeline {
                                  steps {
                                   echo "building docker image"
                                   bat "docker push alekckorsh/hospital"
+
+
                                        }
          }
 
