@@ -1,10 +1,10 @@
-package com.my.project.petclinic.hospital.persistence.jdbcRepository;
+package com.my.project.petclinic.hospital.persistence.jdbcrepository;
 
 import com.my.project.petclinic.hospital.domain.model.Patient;
 import com.my.project.petclinic.hospital.persistence.PatientRepository;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.keyHolder.KeyHolderFactory;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.resultSetExtractor.ListPatientsResultSetExtractor;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.resultSetExtractor.PatientResultSetExtractor;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.keyholder.KeyHolderFactory;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.resultsetextractor.ListPatientsResultSetExtractor;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.resultsetextractor.PatientResultSetExtractor;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.KeyHolder;
@@ -37,7 +37,7 @@ class JdbcPatientRepository implements PatientRepository {
     @Transactional
     public Patient save(Patient patient) {
         final KeyHolder keyHolder = keyHolderFactory.newKeyHolder();
-        long patientId;
+        long patientId = 0;
         Map<String, Object> keys;
         jdbcTemplate.update(con -> {
             final PreparedStatement ps = con.prepareStatement(Queries.SAVE_PATIENT, Statement.RETURN_GENERATED_KEYS);
@@ -48,7 +48,9 @@ class JdbcPatientRepository implements PatientRepository {
         }, keyHolder);
         if (Objects.requireNonNull(keyHolder.getKeys()).size() > 1) {
             keys = keyHolder.getKeys();
-            patientId = ((Integer) keys.get("p_id")).longValue();
+            if (keys != null) {
+                patientId = ((Integer) keys.get("p_id")).longValue();
+            }
         } else {
             patientId = Objects.requireNonNull(keyHolder.getKey()).longValue();
         }

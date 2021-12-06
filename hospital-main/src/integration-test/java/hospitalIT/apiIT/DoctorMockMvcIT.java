@@ -1,32 +1,24 @@
 package hospitalIT.apiIT;
 
 import com.my.project.petclinic.hospital.HospitalApplication;
-import com.my.project.petclinic.hospital.api.config.WebMvcConfig;
 import com.my.project.petclinic.hospital.api.controller.DoctorController;
 import com.my.project.petclinic.hospital.domain.model.Doctor;
 import com.my.project.petclinic.hospital.domain.service.DoctorService;
 import com.my.project.petclinic.hospital.persistence.DoctorRepository;
 import ma.glasnost.orika.MapperFacade;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -38,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(classes = HospitalApplication.class)
-public class DoctorMockMvcIT {
+class DoctorMockMvcIT {
 
     @MockBean
     private DoctorRepository repository;
@@ -53,14 +45,14 @@ public class DoctorMockMvcIT {
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(new DoctorController(doctorService, mapper)).build();
 
     }
 
     @Test
     @DisplayName("when send request to get all doctors then should return json list and status ok")
-    public void getAllShouldReturnDoctorListAsJsonTest() throws Exception {
+    void getAllShouldReturnDoctorListAsJsonTest() throws Exception {
         //given
         final Doctor doctor1 = Doctor.builder().id(1L).name("First").surName("SurName1").position("dentist").patients(Collections.emptyList()).build();
         final Doctor doctor2 = Doctor.builder().id(2L).name("Second").surName("SurName2").position("dentist").patients(Collections.emptyList()).build();
@@ -69,6 +61,7 @@ public class DoctorMockMvcIT {
         //then
         mockMvc.perform(get("/hospital/doctors").
                 contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(status().is(200))
                 .andExpect(header().string("Content-Type", "application/json"))
@@ -80,7 +73,7 @@ public class DoctorMockMvcIT {
 
     @Test
     @DisplayName("when send post request to save new doctor than should return status Created and id")
-    public void shouldReturnStatusCreatedAndSavedIDWhenSaveNewDoctorTest() throws Exception {
+    void shouldReturnStatusCreatedAndSavedIDWhenSaveNewDoctorTest() throws Exception {
         //given
         final Doctor saved = Doctor.builder().id(55L).name("John").surName("GoodMan").position("terapist").build();
         when(repository.save(any(Doctor.class))).thenReturn(saved);
@@ -99,7 +92,7 @@ public class DoctorMockMvcIT {
 
     @Test
     @DisplayName("should update doctor")
-    public void shouldUpdateDoctorTest() throws Exception {
+    void shouldUpdateDoctorTest() throws Exception {
         //given
         final Doctor updated = Doctor.builder().id(55L).name("JohnUpdated").surName("GoodMan").position("terapist").patients(Collections.emptyList()).build();
         when(repository.update(any(Doctor.class))).thenReturn(updated);

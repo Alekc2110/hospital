@@ -1,7 +1,7 @@
 package com.my.project.petclinic.hospital.persistence;
 
 import com.my.project.petclinic.hospital.domain.model.Patient;
-import com.my.project.petclinic.hospital.persistence.config.RequestBackground;
+import com.my.project.petclinic.hospital.api.config.RequestBackground;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-public class PatientRepositoryStrategyTest {
+class PatientRepositoryStrategyTest {
 
     private PatientRepositoryStrategy subject;
     private PatientRepository jdbcPatientRepository;
@@ -27,7 +27,7 @@ public class PatientRepositoryStrategyTest {
 
     @Test
     @DisplayName("should return list of patients using jdbc")
-    public void shouldReturnListOfPatientsByJdbcIfConditionTrueTest() {
+    void shouldReturnListOfPatientsByJdbcIfConditionTrueTest() {
         //given
         final Patient patient1 = Patient.builder().id(1L).name("first").surName("surName1").build();
         final Patient patient2 = Patient.builder().id(2L).name("second").surName("surName2").build();
@@ -44,7 +44,7 @@ public class PatientRepositoryStrategyTest {
 
     @Test
     @DisplayName("should return list of patients using jpa")
-    public void shouldReturnListOfPatientsByJpaIfConditionFalseTest() {
+    void shouldReturnListOfPatientsByJpaIfConditionFalseTest() {
         //given
         final Patient patient1 = Patient.builder().id(1L).name("first").surName("surName1").build();
         final Patient patient2 = Patient.builder().id(2L).name("second").surName("surName2").build();
@@ -61,7 +61,7 @@ public class PatientRepositoryStrategyTest {
 
     @Test
     @DisplayName("should save new patient using jdbc")
-    public void shouldSaveNewDoctorByJdbcIfConditionTrueTest() {
+    void shouldSaveNewDoctorByJdbcIfConditionTrueTest() {
         //given
         final Patient patient = Patient.builder().name("first").surName("surName1").build();
         final Patient patient1 = Patient.builder().id(1L).name("first").surName("surName1").build();
@@ -77,7 +77,7 @@ public class PatientRepositoryStrategyTest {
 
     @Test
     @DisplayName("should save new patient using jpa")
-    public void shouldSaveNewPatientByJpaIfConditionFalseTest() {
+    void shouldSaveNewPatientByJpaIfConditionFalseTest() {
         //given
         final Patient patient = Patient.builder().name("first").surName("surName1").build();
         final Patient patient1 = Patient.builder().id(1L).name("first").surName("surName1").build();
@@ -93,7 +93,7 @@ public class PatientRepositoryStrategyTest {
 
     @Test
     @DisplayName("should update patient using jdbc")
-    public void shouldUpdatePatientByJdbcIfConditionTrueTest() {
+    void shouldUpdatePatientByJdbcIfConditionTrueTest() {
         //given
         final Patient patient = Patient.builder().id(5L).name("first").surName("surName1").build();
         when(condition.getJdbc()).thenReturn(true);
@@ -108,7 +108,7 @@ public class PatientRepositoryStrategyTest {
 
     @Test
     @DisplayName("should update patient using jpa")
-    public void shouldUpdatePatientByJpaIfConditionFalseTest() {
+    void shouldUpdatePatientByJpaIfConditionFalseTest() {
         //given
         final Patient patient = Patient.builder().id(5L).name("first").surName("surName1").build();
         when(condition.getJdbc()).thenReturn(false);
@@ -123,7 +123,7 @@ public class PatientRepositoryStrategyTest {
 
     @Test
     @DisplayName("should find by id and return patient using jpa")
-    public void shouldFindByIdAndReturnPatientByJpaIfConditionFalseTest() {
+    void shouldFindByIdAndReturnPatientByJpaIfConditionFalseTest() {
         //given
         final Long id = 5L;
         final Patient patient = Patient.builder().id(5L).name("first").surName("surName1").build();
@@ -139,7 +139,7 @@ public class PatientRepositoryStrategyTest {
 
     @Test
     @DisplayName("should find by id and return patient using jdbc")
-    public void shouldFindByIdAndReturnPatientByJdbcIfConditionTrueTest() {
+    void shouldFindByIdAndReturnPatientByJdbcIfConditionTrueTest() {
         //given
         final Long id = 5L;
         final Patient patient = Patient.builder().id(5L).name("first").surName("surName1").build();

@@ -1,7 +1,7 @@
 package com.my.project.petclinic.hospital.persistence;
 
 import com.my.project.petclinic.hospital.domain.model.Doctor;
-import com.my.project.petclinic.hospital.persistence.config.RequestBackground;
+import com.my.project.petclinic.hospital.api.config.RequestBackground;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -25,7 +25,8 @@ class DoctorRepositoryStrategy implements DoctorRepository {
 
     @Override
     public List<Doctor> findAll() {
-        if (condition.getJdbc()) {
+        final Boolean jdbc = condition.getJdbc();
+        if (Boolean.TRUE.equals(jdbc)) {
             return jdbcDoctorRepository.findAll();
         } else {
             return jpaDoctorRepository.findAll();
@@ -34,7 +35,8 @@ class DoctorRepositoryStrategy implements DoctorRepository {
 
     @Override
     public Doctor save(Doctor doctor) {
-        if (condition.getJdbc()) {
+        final Boolean jdbc = condition.getJdbc();
+        if (Boolean.TRUE.equals(jdbc)) {
             return jdbcDoctorRepository.save(doctor);
         } else {
             return jpaDoctorRepository.save(doctor);
@@ -43,7 +45,8 @@ class DoctorRepositoryStrategy implements DoctorRepository {
 
     @Override
     public Doctor update(Doctor doctor) {
-        if (condition.getJdbc()) {
+        final Boolean jdbc = condition.getJdbc();
+        if (Boolean.TRUE.equals(jdbc)) {
             return jdbcDoctorRepository.update(doctor);
         } else {
             return jpaDoctorRepository.update(doctor);
@@ -52,7 +55,8 @@ class DoctorRepositoryStrategy implements DoctorRepository {
 
     @Override
     public Doctor findById(Long id) {
-        if (condition.getJdbc()) {
+        final Boolean jdbc = condition.getJdbc();
+        if (Boolean.TRUE.equals(jdbc)) {
             return jdbcDoctorRepository.findById(id);
         } else {
             return jpaDoctorRepository.findById(id);

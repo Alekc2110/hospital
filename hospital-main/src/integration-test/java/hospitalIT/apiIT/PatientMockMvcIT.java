@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(classes = HospitalApplication.class)
-public class PatientMockMvcIT {
+class PatientMockMvcIT {
 
     @Autowired
     private WebApplicationContext context;
@@ -42,14 +42,14 @@ public class PatientMockMvcIT {
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
 
     }
 
     @Test
     @DisplayName("when send request to get all patients then should return json list and status ok")
-    public void getAllShouldReturnPatientListAsJsonTest() throws Exception {
+    void getAllShouldReturnPatientListAsJsonTest() throws Exception {
         //given
         final Patient patient1 = Patient.builder().id(1L).name("First").surName("SurName1").age(51).doctors(Collections.emptyList()).build();
         final Patient patient2 = Patient.builder().id(2L).name("Second").surName("SurName2").age(55).doctors(Collections.emptyList()).build();
@@ -59,6 +59,7 @@ public class PatientMockMvcIT {
         //then
         mockMvc.perform(get("/hospital/patients").
                 contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(status().is(200))
                 .andExpect(header().string("Content-Type", "application/json"))
@@ -70,7 +71,7 @@ public class PatientMockMvcIT {
 
     @Test
     @DisplayName("when send post request to save new patient than should return status Created and id")
-    public void shouldReturnStatusCreatedAndSavedIDWhenSaveNewPatientTest() throws Exception {
+    void shouldReturnStatusCreatedAndSavedIDWhenSaveNewPatientTest() throws Exception {
         //given
         final Patient saved = Patient.builder().id(25L).name("First").surName("SurName").age(51).build();
         when(repository.save(any(Patient.class))).thenReturn(saved);
@@ -89,7 +90,7 @@ public class PatientMockMvcIT {
 
     @Test
     @DisplayName("should update doctor")
-    public void shouldUpdateDoctorTest() throws Exception {
+    void shouldUpdateDoctorTest() throws Exception {
         //given
         final Patient updated = Patient.builder().id(25L).name("FirstUpdated").surName("SurName").age(51).doctors(Collections.emptyList()).build();
         when(repository.update(any(Patient.class))).thenReturn(updated);

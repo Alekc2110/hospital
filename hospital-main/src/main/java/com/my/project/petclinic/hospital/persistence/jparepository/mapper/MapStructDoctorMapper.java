@@ -1,4 +1,4 @@
-package com.my.project.petclinic.hospital.persistence.JpaRepository.mapper;
+package com.my.project.petclinic.hospital.persistence.jparepository.mapper;
 
 import com.my.project.petclinic.hospital.domain.model.Doctor;
 import com.my.project.petclinic.hospital.persistence.entity.DoctorEntity;

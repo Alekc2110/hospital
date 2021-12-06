@@ -1,8 +1,8 @@
-package com.my.project.petclinic.hospital.persistence.JpaRepository;
+package com.my.project.petclinic.hospital.persistence.jparepository;
 
 import com.my.project.petclinic.hospital.domain.model.Doctor;
-import com.my.project.petclinic.hospital.persistence.JpaRepository.interfaces.JpaDoctorRepo;
-import com.my.project.petclinic.hospital.persistence.JpaRepository.mapper.MapStructDoctorMapper;
+import com.my.project.petclinic.hospital.persistence.jparepository.interfaces.JpaDoctorRepo;
+import com.my.project.petclinic.hospital.persistence.jparepository.mapper.MapStructDoctorMapper;
 import com.my.project.petclinic.hospital.persistence.entity.DoctorEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class JpaDoctorRepositoryTest {
+class JpaDoctorRepositoryTest {
 
     @InjectMocks
     private JpaDoctorRepository subject;
@@ -32,7 +32,7 @@ public class JpaDoctorRepositoryTest {
 
     @Test
     @DisplayName("should return list of doctors")
-    public void findAllShouldReturnListOfDoctorsTest() {
+    void findAllShouldReturnListOfDoctorsTest() {
         //given
         final DoctorEntity doctorEntity = DoctorEntity.builder().id(1L).name("first").surName("surName1").position("dentist").build();
         final Doctor doctor = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
@@ -55,7 +55,7 @@ public class JpaDoctorRepositoryTest {
 
     @Test
     @DisplayName("should save new doctor")
-    public void shouldSaveNewDoctorTest() {
+    void shouldSaveNewDoctorTest() {
         //given
         final Long savedId = 1L;
         final Doctor doctorToSave = Doctor.builder().name("first").surName("surName1").position("dentist").build();
@@ -75,7 +75,7 @@ public class JpaDoctorRepositoryTest {
 
     @Test
     @DisplayName("should update doctor")
-    public void shouldUpdateDoctorTest() {
+    void shouldUpdateDoctorTest() {
         //given
         final DoctorEntity doctorEntity = DoctorEntity.builder().id(1L).name("Max").surName("surName").position("surgeon").build();
         final Doctor doctor = Doctor.builder().id(1L).name("Max").surName("surName").position("surgeon").build();
@@ -96,7 +96,7 @@ public class JpaDoctorRepositoryTest {
 
     @Test
     @DisplayName("should return doctor by id")
-    public void shouldReturnDoctorByIdTest() {
+    void shouldReturnDoctorByIdTest() {
         //given
         final Long doctorId = 1L;
         final DoctorEntity doctorEntity = DoctorEntity.builder().id(1L).name("Max").surName("surName").position("surgeon").build();
@@ -119,7 +119,7 @@ public class JpaDoctorRepositoryTest {
 
     @Test
     @DisplayName("should throw EntityNotFoundException if findById returns null")
-    public void shouldThrowExceptionIfNotFoundDoctorByIdTest() {
+    void shouldThrowExceptionIfNotFoundDoctorByIdTest() {
         //given
         final Long doctorId = 1L;
         when(repository.findById(Mockito.anyLong())).thenReturn(Optional.empty());

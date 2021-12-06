@@ -1,4 +1,4 @@
-package com.my.project.petclinic.hospital.persistence.jdbcRepository.keyHolder;
+package com.my.project.petclinic.hospital.persistence.jdbcrepository.keyholder;
 
 import org.springframework.jdbc.support.KeyHolder;
 

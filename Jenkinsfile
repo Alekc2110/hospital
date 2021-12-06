@@ -33,6 +33,13 @@ pipeline {
                                }
          }
 
+         stage('sonarqube verify') {
+                        steps {
+                         echo "checking project by sonarqube"
+                         bat "mvn -pl hospital-main clean verify sonar:sonar"
+                                        }
+                  }
+
          stage('build docker image') {
                         steps {
                          echo "building docker image"

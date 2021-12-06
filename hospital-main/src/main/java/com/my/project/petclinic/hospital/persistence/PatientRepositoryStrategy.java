@@ -1,7 +1,7 @@
 package com.my.project.petclinic.hospital.persistence;
 
 import com.my.project.petclinic.hospital.domain.model.Patient;
-import com.my.project.petclinic.hospital.persistence.config.RequestBackground;
+import com.my.project.petclinic.hospital.api.config.RequestBackground;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -26,7 +26,8 @@ class PatientRepositoryStrategy implements PatientRepository {
 
     @Override
     public List<Patient> findAll() {
-        if (condition.getJdbc()) {
+        final Boolean jdbc = condition.getJdbc();
+        if (Boolean.TRUE.equals(jdbc)) {
             return jdbcPatientRepository.findAll();
         } else {
             return jpaPatientRepository.findAll();
@@ -35,7 +36,8 @@ class PatientRepositoryStrategy implements PatientRepository {
 
     @Override
     public Patient save(Patient patient) {
-        if (condition.getJdbc()) {
+        final Boolean jdbc = condition.getJdbc();
+        if (Boolean.TRUE.equals(jdbc)) {
             return jdbcPatientRepository.save(patient);
         } else {
             return jpaPatientRepository.save(patient);
@@ -44,7 +46,8 @@ class PatientRepositoryStrategy implements PatientRepository {
 
     @Override
     public Patient update(Patient patient) {
-        if (condition.getJdbc()) {
+        final Boolean jdbc = condition.getJdbc();
+        if (Boolean.TRUE.equals(jdbc)) {
             return jdbcPatientRepository.update(patient);
         } else {
             return jpaPatientRepository.update(patient);
@@ -53,7 +56,8 @@ class PatientRepositoryStrategy implements PatientRepository {
 
     @Override
     public Patient findById(Long id) {
-        if (condition.getJdbc()) {
+        final Boolean jdbc = condition.getJdbc();
+        if (Boolean.TRUE.equals(jdbc)) {
             return jdbcPatientRepository.findById(id);
         } else {
             return jpaPatientRepository.findById(id);

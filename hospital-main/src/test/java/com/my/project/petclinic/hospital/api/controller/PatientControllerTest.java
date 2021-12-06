@@ -1,8 +1,6 @@
 package com.my.project.petclinic.hospital.api.controller;
 
-import com.my.project.petclinic.hospital.api.dto.DoctorDto;
 import com.my.project.petclinic.hospital.api.dto.PatientDto;
-import com.my.project.petclinic.hospital.domain.model.Doctor;
 import com.my.project.petclinic.hospital.domain.model.Patient;
 import com.my.project.petclinic.hospital.domain.service.PatientService;
 import ma.glasnost.orika.MapperFacade;
@@ -19,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PatientControllerTest {
+class PatientControllerTest {
 
     @InjectMocks
     private PatientController subject;
@@ -30,7 +28,7 @@ public class PatientControllerTest {
 
     @Test
     @DisplayName("should return list of patientDtos")
-    public void getAllShouldReturnPatientDtoListTest() {
+    void getAllShouldReturnPatientDtoListTest() {
         //given
         final PatientDto patientDto1 = PatientDto.builder().id(1L).name("first").surName("surName1").build();
         final PatientDto patientDto2 = PatientDto.builder().id(2L).name("second").surName("surName2").build();
@@ -52,7 +50,7 @@ public class PatientControllerTest {
 
     @Test
     @DisplayName("should save new patient and return id")
-    public void shouldSaveNewPatientTest() {
+    void shouldSaveNewPatientTest() {
         //given
         final PatientDto patientDto = PatientDto.builder().name("first").surName("surName1").build();
         final Patient patient = Patient.builder().name("first").surName("surName1").build();
@@ -70,7 +68,7 @@ public class PatientControllerTest {
 
     @Test
     @DisplayName("should update patient")
-    public void shouldUpdateDoctorTest() {
+    void shouldUpdateDoctorTest() {
         //given
         final Long id = 5L;
         final PatientDto patientDto = PatientDto.builder().id(5L).name("first").surName("surName1").build();

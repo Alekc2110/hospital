@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class DoctorServiceTest {
+class DoctorServiceTest {
 
     @InjectMocks
     private DoctorService subject;
@@ -26,7 +26,7 @@ public class DoctorServiceTest {
 
     @Test
     @DisplayName("should return not empty list")
-    public void getAllDoctorsShouldReturnNotEmptyListTest() {
+    void getAllDoctorsShouldReturnNotEmptyListTest() {
         //given
         final List<Doctor> testList = List.of(Doctor.builder().id(1L).name("first").surName("surName1").position("pos1").build(),
                 Doctor.builder().id(2L).name("second").surName("surName2").position("pos2").build());
@@ -40,7 +40,7 @@ public class DoctorServiceTest {
 
     @Test
     @DisplayName("should return doctors list")
-    public void getAllDoctorsShouldReturnDoctorsListTest() {
+    void getAllDoctorsShouldReturnDoctorsListTest() {
         //given
         final List<Doctor> testList = List.of(Doctor.builder().id(1L).name("first").surName("surName1").position("pos1").build(),
                 Doctor.builder().id(2L).name("second").surName("surName2").position("pos2").build());
@@ -55,7 +55,7 @@ public class DoctorServiceTest {
 
     @Test
     @DisplayName("should save new doctor")
-    public void shouldSaveNewDoctorTest() {
+    void shouldSaveNewDoctorTest() {
         //given
         Doctor doctor = Doctor.builder().build();
         Doctor savedDoctor =  Doctor.builder().id(5L).name("name").surName("SurName").position("doctor").build();
@@ -68,7 +68,7 @@ public class DoctorServiceTest {
 
     @Test
     @DisplayName("should update doctor")
-    public void shouldUpdateDoctorTest() {
+    void shouldUpdateDoctorTest() {
         //given
         Doctor doctor =  Doctor.builder().id(1L).name("updated").surName("SurName").position("doctor").build();
         Doctor updated =  Doctor.builder().id(1L).name("updated").surName("SurName").position("doctor").build();

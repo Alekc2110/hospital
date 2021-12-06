@@ -1,8 +1,8 @@
-package com.my.project.petclinic.hospital.persistence.JpaRepository;
+package com.my.project.petclinic.hospital.persistence.jparepository;
 
 import com.my.project.petclinic.hospital.domain.model.Patient;
-import com.my.project.petclinic.hospital.persistence.JpaRepository.interfaces.JpaPatientRepo;
-import com.my.project.petclinic.hospital.persistence.JpaRepository.mapper.MapStructPatientMapper;
+import com.my.project.petclinic.hospital.persistence.jparepository.interfaces.JpaPatientRepo;
+import com.my.project.petclinic.hospital.persistence.jparepository.mapper.MapStructPatientMapper;
 import com.my.project.petclinic.hospital.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class JpaPatientRepositoryTest {
+class JpaPatientRepositoryTest {
 
     @InjectMocks
     private JpaPatientRepository subject;
@@ -31,7 +31,7 @@ public class JpaPatientRepositoryTest {
 
     @Test
     @DisplayName("should return list of patients")
-    public void findAllShouldReturnListOfPatientsTest(){
+    void findAllShouldReturnListOfPatientsTest(){
         //given
         final PatientEntity patientEntity = PatientEntity.builder().id(1L).name("first").surName("surName1").age(51).build();
         final Patient patient = Patient.builder().id(1L).name("first").surName("surName1").age(51).build();
@@ -54,7 +54,7 @@ public class JpaPatientRepositoryTest {
 
     @Test
     @DisplayName("should save new patient")
-    public void shouldSaveNewPatientTest(){
+    void shouldSaveNewPatientTest(){
         //given
         final Patient patientToSave = Patient.builder().name("first").surName("surName1").age(51).build();
         final PatientEntity patientEntity = PatientEntity.builder().id(1L).name("first").surName("surName1").age(51).build();
@@ -73,7 +73,7 @@ public class JpaPatientRepositoryTest {
 
     @Test
     @DisplayName("should update patient")
-    public void shouldUpdatePatientTest(){
+    void shouldUpdatePatientTest(){
         //given
         final PatientEntity patientEntity = PatientEntity.builder().id(1L).name("first").surName("surName1").age(51).build();
         final Patient patient = Patient.builder().id(1L).name("first").surName("surName1").age(51).build();
@@ -94,7 +94,7 @@ public class JpaPatientRepositoryTest {
 
     @Test
     @DisplayName("should return patient by id")
-    public void shouldReturnPatientByIdTest() {
+    void shouldReturnPatientByIdTest() {
         //given
         final Long patientId = 1L;
         final PatientEntity patientEntity = PatientEntity.builder().id(1L).name("first").surName("surName1").age(51).build();
@@ -117,7 +117,7 @@ public class JpaPatientRepositoryTest {
 
     @Test
     @DisplayName("should throw EntityNotFoundException if findById returns null")
-    public void shouldThrowExceptionIfNotFoundPatientByIdTest() {
+    void shouldThrowExceptionIfNotFoundPatientByIdTest() {
         //given
         final Long patientId = 1L;
         when(repository.findById(Mockito.anyLong())).thenReturn(Optional.empty());

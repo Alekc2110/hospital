@@ -1,7 +1,7 @@
 package com.my.project.petclinic.hospital.persistence;
 
 import com.my.project.petclinic.hospital.domain.model.Doctor;
-import com.my.project.petclinic.hospital.persistence.config.RequestBackground;
+import com.my.project.petclinic.hospital.api.config.RequestBackground;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 
-public class DoctorRepositoryStrategyTest {
+class DoctorRepositoryStrategyTest {
 
     private DoctorRepositoryStrategy subject;
     private DoctorRepository jdbcDoctorRepository;
@@ -28,7 +28,7 @@ public class DoctorRepositoryStrategyTest {
 
     @Test
     @DisplayName("should return list of doctors using jdbc")
-    public void shouldReturnListOfDoctorsByJdbcIfConditionTrueTest() {
+    void shouldReturnListOfDoctorsByJdbcIfConditionTrueTest() {
         //given
         final Doctor doctor1 = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
         final Doctor doctor2 = Doctor.builder().id(2L).name("second").surName("surName2").position("dentist").build();
@@ -45,7 +45,7 @@ public class DoctorRepositoryStrategyTest {
 
     @Test
     @DisplayName("should return list of doctors using jpa")
-    public void shouldReturnListOfDoctorsByJpaIfConditionFalseTest() {
+    void shouldReturnListOfDoctorsByJpaIfConditionFalseTest() {
         //given
         final Doctor doctor1 = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
         final Doctor doctor2 = Doctor.builder().id(2L).name("second").surName("surName2").position("dentist").build();
@@ -63,7 +63,7 @@ public class DoctorRepositoryStrategyTest {
 
     @Test
     @DisplayName("should save new doctor using jdbc")
-    public void shouldSaveNewDoctorByJdbcIfConditionTrueTest() {
+    void shouldSaveNewDoctorByJdbcIfConditionTrueTest() {
         //given
         final Doctor doctor = Doctor.builder().name("first").surName("surName1").position("dentist").build();
         final Doctor doctor1 = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
@@ -80,7 +80,7 @@ public class DoctorRepositoryStrategyTest {
 
     @Test
     @DisplayName("should save new doctor using jpa")
-    public void shouldSaveNewDoctorByJpaIfConditionFalseTest() {
+    void shouldSaveNewDoctorByJpaIfConditionFalseTest() {
         //given
         final Doctor doctor = Doctor.builder().name("first").surName("surName1").position("dentist").build();
         final Doctor doctor1 = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
@@ -97,7 +97,7 @@ public class DoctorRepositoryStrategyTest {
 
     @Test
     @DisplayName("should update doctor using jdbc")
-    public void shouldUpdateDoctorByJdbcIfConditionTrueTest() {
+    void shouldUpdateDoctorByJdbcIfConditionTrueTest() {
         //given
         final Doctor doctor = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
         when(condition.getJdbc()).thenReturn(true);
@@ -112,7 +112,7 @@ public class DoctorRepositoryStrategyTest {
 
     @Test
     @DisplayName("should update doctor using jpa")
-    public void shouldUpdateDoctorByJpaIfConditionFalseTest() {
+    void shouldUpdateDoctorByJpaIfConditionFalseTest() {
         //given
         final Doctor doctor = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
         when(condition.getJdbc()).thenReturn(false);
@@ -127,7 +127,7 @@ public class DoctorRepositoryStrategyTest {
 
     @Test
     @DisplayName("should find by id and return doctor using jpa")
-    public void shouldFindByIdAndReturnDoctorByJpaIfConditionFalseTest() {
+    void shouldFindByIdAndReturnDoctorByJpaIfConditionFalseTest() {
         //given
         final Long id = 1L;
         final Doctor doctor = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
@@ -143,7 +143,7 @@ public class DoctorRepositoryStrategyTest {
 
     @Test
     @DisplayName("should find by id and return doctor using jdbc")
-    public void shouldFindByIdAndReturnDoctorByJdbcIfConditionTrueTest() {
+    void shouldFindByIdAndReturnDoctorByJdbcIfConditionTrueTest() {
         //given
         final Long id = 1L;
         final Doctor doctor = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();

@@ -1,10 +1,10 @@
-package com.my.project.petclinic.hospital.persistence.jdbcRepository;
+package com.my.project.petclinic.hospital.persistence.jdbcrepository;
 
 import com.my.project.petclinic.hospital.domain.model.Doctor;
 import com.my.project.petclinic.hospital.persistence.DoctorRepository;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.keyHolder.KeyHolderFactory;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.resultSetExtractor.DoctorResultSetExtractor;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.resultSetExtractor.ListDoctorsResultSetExtractor;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.keyholder.KeyHolderFactory;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.resultsetextractor.DoctorResultSetExtractor;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.resultsetextractor.ListDoctorsResultSetExtractor;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.KeyHolder;
@@ -38,7 +38,7 @@ class JdbcDoctorRepository implements DoctorRepository {
     @Transactional
     public Doctor save(Doctor doctor) {
         final KeyHolder keyHolder = keyHolderFactory.newKeyHolder();
-        long doctorId;
+        long doctorId = 0;
         Map<String, Object> keys;
         jdbcTemplate.update(con -> {
             final PreparedStatement ps = con.prepareStatement(Queries.SAVE_DOCTOR, Statement.RETURN_GENERATED_KEYS);
@@ -49,7 +49,10 @@ class JdbcDoctorRepository implements DoctorRepository {
         }, keyHolder);
         if (Objects.requireNonNull(keyHolder.getKeys()).size() > 1) {
             keys = keyHolder.getKeys();
-            doctorId = ((Integer) keys.get("d_id")).longValue();
+            if(keys != null){
+                doctorId = ((Integer) keys.get("d_id")).longValue();
+            }
+
         } else {
             doctorId = Objects.requireNonNull(keyHolder.getKey()).longValue();
         }

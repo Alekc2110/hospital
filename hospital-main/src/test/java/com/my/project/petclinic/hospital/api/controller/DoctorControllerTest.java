@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DoctorControllerTest {
+class DoctorControllerTest {
 
     @InjectMocks
     private DoctorController subject;
@@ -29,7 +29,7 @@ public class DoctorControllerTest {
 
     @Test
     @DisplayName("should return list of doctorDtos")
-    public void getAllShouldReturnDoctorDtoListTest() {
+    void getAllShouldReturnDoctorDtoListTest() {
         //given
         final DoctorDto doctorDto = DoctorDto.builder().id(1L).name("first").surName("surName1").position("dentist").build();
         final Doctor doctor = Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build();
@@ -47,7 +47,7 @@ public class DoctorControllerTest {
 
     @Test
     @DisplayName("should save new doctor and return id")
-    public void shouldSaveNewDoctorTest() {
+    void shouldSaveNewDoctorTest() {
         //given
         final DoctorDto doctorDto = DoctorDto.builder().name("first").surName("surName1").position("dentist").build();
         final Doctor doctor = Doctor.builder().name("first").surName("surName1").position("dentist").build();
@@ -64,7 +64,7 @@ public class DoctorControllerTest {
 
     @Test
     @DisplayName("should update doctor")
-    public void shouldUpdateDoctorTest() {
+    void shouldUpdateDoctorTest() {
         //given
         final Long id = 5L;
         final DoctorDto doctorDto = DoctorDto.builder().id(5L).name("first").surName("surName1").position("dentist").build();

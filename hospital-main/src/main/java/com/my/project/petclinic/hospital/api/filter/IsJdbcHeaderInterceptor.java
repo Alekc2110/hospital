@@ -1,6 +1,6 @@
 package com.my.project.petclinic.hospital.api.filter;
 
-import com.my.project.petclinic.hospital.persistence.config.RequestBackground;
+import com.my.project.petclinic.hospital.api.config.RequestBackground;
 import lombok.Data;
 import org.springframework.web.servlet.HandlerInterceptor;
 

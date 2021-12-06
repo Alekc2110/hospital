@@ -1,11 +1,10 @@
-package com.my.project.petclinic.hospital.persistence.jdbcRepository;
+package com.my.project.petclinic.hospital.persistence.jdbcrepository;
 
 import com.my.project.petclinic.hospital.domain.model.Patient;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.keyHolder.KeyHolderFactory;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.resultSetExtractor.ListPatientsResultSetExtractor;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.resultSetExtractor.PatientResultSetExtractor;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.keyholder.KeyHolderFactory;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.resultsetextractor.ListPatientsResultSetExtractor;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.resultsetextractor.PatientResultSetExtractor;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +15,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import javax.persistence.EntityNotFoundException;
@@ -29,7 +27,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class JdbcPatientRepositoryTest {
+class JdbcPatientRepositoryTest {
 
 
     @InjectMocks
@@ -49,7 +47,7 @@ public class JdbcPatientRepositoryTest {
 
     @Test
     @DisplayName("should return list of patients")
-    public void findAllShouldReturnListOfPatientsTest(){
+    void findAllShouldReturnListOfPatientsTest(){
         //given
         List<Patient> testList = List.of(Patient.builder().id(1L).name("first").surName("surName1").age(40).build(),
                 Patient.builder().id(2L).name("second").surName("surName2").age(35).build());
@@ -64,7 +62,7 @@ public class JdbcPatientRepositoryTest {
 
     @Test
     @DisplayName("should save new patient")
-    public void shouldSaveNewPatientTest(){
+    void shouldSaveNewPatientTest(){
         //given
         Long expectedId = 4L;
         Patient patient =  Patient.builder().name("patient").surName("NickName").age(30).build();
@@ -87,7 +85,7 @@ public class JdbcPatientRepositoryTest {
 
     @Test
     @DisplayName("should update patient")
-    public void shouldUpdateDoctorTest(){
+    void shouldUpdateDoctorTest(){
         //given
         final Long patientId = 3L;
         final Patient patient = Patient.builder().id(3L).name("Update").surName("SurName3").age(55).build();
@@ -108,7 +106,7 @@ public class JdbcPatientRepositoryTest {
 
     @Test
     @DisplayName("when update patient should call jdbcTepmlate method in right order")
-    public void shouldCallJdbcTemplateQueriesInOrderWhenUpdatePatientTest(){
+    void shouldCallJdbcTemplateQueriesInOrderWhenUpdatePatientTest(){
         //given
         final Long patientId = 3L;
         final Patient patient = Patient.builder().id(3L).name("Update").surName("SurName3").age(55).build();
@@ -126,7 +124,7 @@ public class JdbcPatientRepositoryTest {
 
     @Test
     @DisplayName("should return patient by id")
-    public void shouldReturnPatientByIdTest(){
+    void shouldReturnPatientByIdTest(){
         //given
         final Long patientId = 3L;
         final Patient patient = Patient.builder().id(3L).name("Update").surName("SurName3").age(55).build();
@@ -146,7 +144,7 @@ public class JdbcPatientRepositoryTest {
 
     @Test
     @DisplayName("should throw EntityNotFoundException if findById returns null")
-    public void shouldThrowExceptionIfNotFoundPatientByIdTest() {
+    void shouldThrowExceptionIfNotFoundPatientByIdTest() {
         //given
         Long patientId = 3L;
         when(jdbcTemplate.query(Queries.GET_PATIENT_BY_ID, patientResultSetExtractor, patientId)).thenReturn(null);

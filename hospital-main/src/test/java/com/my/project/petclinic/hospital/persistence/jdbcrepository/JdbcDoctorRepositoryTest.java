@@ -1,11 +1,10 @@
-package com.my.project.petclinic.hospital.persistence.jdbcRepository;
+package com.my.project.petclinic.hospital.persistence.jdbcrepository;
 
 import com.my.project.petclinic.hospital.domain.model.Doctor;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.keyHolder.KeyHolderFactory;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.resultSetExtractor.DoctorResultSetExtractor;
-import com.my.project.petclinic.hospital.persistence.jdbcRepository.resultSetExtractor.ListDoctorsResultSetExtractor;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.keyholder.KeyHolderFactory;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.resultsetextractor.DoctorResultSetExtractor;
+import com.my.project.petclinic.hospital.persistence.jdbcrepository.resultsetextractor.ListDoctorsResultSetExtractor;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,21 +15,19 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class JdbcDoctorRepositoryTest {
+class JdbcDoctorRepositoryTest {
 
     @InjectMocks
     private JdbcDoctorRepository subject;
@@ -47,7 +44,7 @@ public class JdbcDoctorRepositoryTest {
 
     @Test
     @DisplayName("should return list of doctors")
-    public void findAllShouldReturnListOfDoctorsTest() {
+    void findAllShouldReturnListOfDoctorsTest() {
         //given
         List<Doctor> testList = List.of(Doctor.builder().id(1L).name("first").surName("surName1").position("dentist").build(),
                 Doctor.builder().id(2L).name("second").surName("surName2").position("therapist").build());
@@ -62,7 +59,7 @@ public class JdbcDoctorRepositoryTest {
 
     @Test
     @DisplayName("should save new doctor")
-    public void shouldSaveNewDoctorTest() {
+    void shouldSaveNewDoctorTest() {
         //given
         Long expectedId = 6L;
         Doctor doctor = Doctor.builder().name("Max").surName("SurName").position("surgeon").build();
@@ -85,7 +82,7 @@ public class JdbcDoctorRepositoryTest {
 
     @Test
     @DisplayName("should update doctor")
-    public void shouldUpdateDoctorTest() {
+    void shouldUpdateDoctorTest() {
         //given
         Long doctorId = 3L;
         final Doctor doctor = Doctor.builder().id(3L).name("Max").surName("SurName").position("surgeon").build();
@@ -106,7 +103,7 @@ public class JdbcDoctorRepositoryTest {
 
     @Test
     @DisplayName("when update doctor should call jdbcTepmlate method in right order")
-    public void shouldCallJdbcTemplateQueriesInOrderWhenUpdateDoctorTest() {
+    void shouldCallJdbcTemplateQueriesInOrderWhenUpdateDoctorTest() {
         //given
         Long doctorId = 3L;
         final Doctor doctor = Doctor.builder().id(3L).name("Max").surName("SurName").position("surgeon").build();
@@ -125,7 +122,7 @@ public class JdbcDoctorRepositoryTest {
 
     @Test
     @DisplayName("should return doctor by id")
-    public void shouldReturnDoctorByIdTest() {
+    void shouldReturnDoctorByIdTest() {
         //given
         Long doctorId = 3L;
         final Doctor doctor = Doctor.builder().id(3L).name("Max").surName("SurName").position("surgeon").build();
@@ -145,7 +142,7 @@ public class JdbcDoctorRepositoryTest {
 
     @Test
     @DisplayName("should throw EntityNotFoundException if findById returns null")
-    public void shouldThrowExceptionIfNotFoundDoctorByIdTest() {
+    void shouldThrowExceptionIfNotFoundDoctorByIdTest() {
         //given
         Long doctorId = 3L;
         when(jdbcTemplate.query(Queries.GET_DOCTOR_BY_ID, doctorResultSetExtractor, doctorId)).thenReturn(null);
