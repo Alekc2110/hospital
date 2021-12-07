@@ -35,9 +35,7 @@ pipeline {
 
          stage('sonarqube verify') {
                         steps {
-
-                         echo "checking project by sonarqube"
-
+                         echo "verify by sonarqube"
                          bat "mvn clean verify sonar:sonar
                          -Dsonar.projectKey=hospital
                          -Dsonar.host.url=http://localhost:9000
