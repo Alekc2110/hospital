@@ -36,8 +36,7 @@ pipeline {
          stage('sonarqube verify') {
                         steps {
                          echo "checking project by sonarqube"
-//                          withSonarQubeEnv('SonarQube')
-                         bat "mvn -pl hospital-main clean verify sonar:sonar"
+                         bat "mvn clean verify sonar:sonar"
                               }
                   }
 
