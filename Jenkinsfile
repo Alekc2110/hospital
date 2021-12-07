@@ -37,8 +37,11 @@ pipeline {
                         steps {
 
                          echo "checking project by sonarqube"
-                         withSonarQubeEnv(installationName: 'SonarQube')
-                         bat "mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar"
+
+                         bat "mvn clean verify sonar:sonar
+                         -Dsonar.projectKey=hospital
+                         -Dsonar.host.url=http://localhost:9000
+                         -Dsonar.login=5517ea47b308f8bd4d9c5d800046fdb80ba026b7"
 
                               }
                   }
