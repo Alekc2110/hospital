@@ -36,7 +36,8 @@ pipeline {
          stage('sonarqube verify') {
                         steps {
                          echo "checking project by sonarqube"
-                         bat "mvn clean verify sonar:sonar"
+                         withSonarQubeEnv(installationName: 'SonarQube')
+                         bat "mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar"
                               }
                   }
 
