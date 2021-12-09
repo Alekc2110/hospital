@@ -7,7 +7,7 @@ pipeline {
         stage('unit tests') {
                steps {
                 echo "starts running unit testing"
-                bat "mvn clean compile test"
+                bat "mvn -pl hospital-main clean compile test"
             }
         }
 
