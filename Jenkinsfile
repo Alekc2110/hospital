@@ -14,18 +14,10 @@ pipeline {
         stage('integration tests') {
                        steps {
                         echo "starts running integration testing"
-                        bat "mvn -Pfailsafe verify"
+                        bat "mvn -pl hospital-main -Pfailsafe verify"
                     }
         }
 
-        stage('functional cucumber tests') {
-                        steps {
-                         echo "starts running functional testing"
-                         bat "mvn -pl hospital-functional-tests -Dtest=RunnerTest test"
-
-
-                        }
-        }
          stage('hospital build jar') {
                         steps {
                          echo "building project"
@@ -47,14 +39,22 @@ pipeline {
                               }
          }
 
-         stage('deploy docker image') {
+          stage('functional cucumber tests') {
                                  steps {
-                                  echo "building docker image"
-                                  bat "docker push alekckorsh/hospital"
+                                  echo "starts running functional testing"
+                                  bat "mvn -pl hospital-functional-tests -Dtest=RunnerTest test"
 
+                                 }
+                 }
 
-                                       }
-         }
+//          stage('deploy docker image') {
+//                                  steps {
+//                                   echo "building docker image"
+//                                   bat "docker push alekckorsh/hospital"
+//
+//
+//                                        }
+//          }
 
     }
 }
