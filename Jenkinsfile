@@ -39,6 +39,13 @@ pipeline {
                               }
          }
 
+//           stage('run docker container alekckorsh/hospital') {
+//                                  steps {
+//                                   echo "running docker container"
+//                                   bat "docker build . -t alekckorsh/hospital"
+//                                        }
+//                   }
+
           stage('functional cucumber tests') {
                                  steps {
                                   echo "starts running functional testing"
