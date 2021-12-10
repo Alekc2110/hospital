@@ -164,11 +164,11 @@
                 <version>${jacoco.version}</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/dto/**</exclude>
-                        <exclude>**/config/**</exclude>
-                        <exclude>**/filter/**</exclude>
-                        <exclude>**/model/**</exclude>
-                        <exclude>**/entity/**</exclude>
+                        <exclude>**/dto/*</exclude>
+                        <exclude>**/config/*</exclude>
+                        <exclude>**/filter/*</exclude>
+                        <exclude>**/model/*</exclude>
+                        <exclude>**/entity/*</exclude>
                     </excludes>
                 </configuration>
 
