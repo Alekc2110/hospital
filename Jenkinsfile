@@ -39,12 +39,12 @@ pipeline {
                               }
          }
 
-//           stage('run docker container alekckorsh/hospital') {
-//                                  steps {
-//                                   echo "running docker container"
-//                                   bat "docker build . -t alekckorsh/hospital"
-//                                        }
-//                   }
+          stage('run docker container alekckorsh/hospital') {
+                                 steps {
+                                  echo "running docker container"
+                                  bat "docker run -d -p 8080:8080 alekckorsh/hospital:latest"
+                                       }
+                  }
 
           stage('functional cucumber tests') {
                                  steps {
