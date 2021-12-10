@@ -29,7 +29,6 @@ pipeline {
                         steps {
                          echo "verify by sonarqube"
                          bat "mvn clean verify sonar:sonar -Dsonar.projectKey=hospital -Dsonar.host.url=http://localhost:9000 -Dsonar.login=5517ea47b308f8bd4d9c5d800046fdb80ba026b7"
-//                          bat "mvn -pl hospital-main clean verify sonar:sonar -Dsonar.projectKey=hospital-main -Dsonar.host.url=http://localhost:9000 -Dsonar.login=05d91302657d2edb56fdd3b81e25a968f690907b"
                               }
                   }
 
