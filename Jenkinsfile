@@ -50,7 +50,7 @@ pipeline {
           stage('functional cucumber tests') {
                                  steps {
                                   echo "starts running functional testing"
-                                  bat "mvn -pl hospital-functional-tests -Dmaven.test.skip=false -Dtest=RunnerTest test"
+                                  bat "mvn -pl hospital-functional-tests -DskipTests=false -Dtest=RunnerTest test"
 
                                  }
                  }
