@@ -30,7 +30,7 @@ public class DoctorCustomMapperTest {
         //given
         Doctor doctor = Doctor.builder()
                 .patients(List.of(Patient.builder()
-                        .id(55L).age(25).name("patient1").surName("patientS").build())).build();
+                        .id(55L).age(25).name("patient1").surName("patientSurname").build())).build();
         DoctorDto doctorDto = DoctorDto.builder().build();
 
         //when
