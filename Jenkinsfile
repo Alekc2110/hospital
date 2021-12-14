@@ -29,6 +29,7 @@ pipeline {
                         steps {
                          echo "verify by sonarqube"
                          bat "mvn clean verify sonar:sonar -Dsonar.projectKey=hospital -Dsonar.host.url=http://localhost:9000 -Dsonar.login=5517ea47b308f8bd4d9c5d800046fdb80ba026b7"
+                         waitForQualityGate abortPipeline: true
                               }
                   }
 
