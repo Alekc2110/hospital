@@ -40,6 +40,7 @@ pipeline {
                                  steps {
                                   echo "quality gate sonarqube"
                                   waitForQualityGate abortPipeline: true
+
                                        }
                            }
 
