@@ -184,6 +184,8 @@
                         <exclude>**/filter/*</exclude>
                         <exclude>**/model/*</exclude>
                         <exclude>**/entity/*</exclude>
+                        <exclude>**/Queries.java</exclude>
+                        <exclude>**/HospitalApplication.java</exclude>
                     </excludes>
                 </configuration>
 
