@@ -28,7 +28,7 @@ pipeline {
          stage('sonarqube verify') {
                         steps {
                          echo "verify by sonarqube"
- //                        bat "mvn clean verify sonar:sonar -Dsonar.projectKey=hospital -Dsonar.host.url=http://localhost:9000 -Dsonar.login=5517ea47b308f8bd4d9c5d800046fdb80ba026b7"
+ //                      bat "mvn clean verify sonar:sonar -Dsonar.projectKey=hospital -Dsonar.host.url=http://localhost:9000 -Dsonar.login=5517ea47b308f8bd4d9c5d800046fdb80ba026b7"
                          withSonarQubeEnv('SonarQube'){
                          bat "mvn clean verify sonar:sonar"
                          }
@@ -55,7 +55,7 @@ pipeline {
           stage('run docker container alekckorsh/hospital') {
                                  steps {
                                   echo "running docker container"
-                                  bat "docker run -d -p 8080:8080 alekckorsh/hospital:latest"
+                                  bat "docker run -d --rm -p 8085:8085 --name hospital-petclinic alekckorsh/hospital:latest"
                                        }
                   }
 

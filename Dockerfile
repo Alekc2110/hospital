@@ -1,7 +1,10 @@
 FROM openjdk:11
 
-EXPOSE 8080
+EXPOSE 8085
 
-ADD hospital-main/target/hospital-main-1.0-SNAPSHOT.jar hospital-main-1.0-SNAPSHOT.jar
+WORKDIR /opt/hospital-test
 
-ENTRYPOINT ["java", "-jar", "/hospital-main-1.0-SNAPSHOT.jar"]
+
+COPY hospital-main/target/hospital-main-1.0-SNAPSHOT.jar /hospital-main-1.0-SNAPSHOT.jar
+
+CMD ["java", "-jar", "/hospital-main-1.0-SNAPSHOT.jar"]
