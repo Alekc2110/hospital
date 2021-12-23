@@ -76,7 +76,7 @@ pipeline {
                                        sh '''#!/bin/bash
                                           echo "starts running functional testing"
                                           mvn -pl hospital-functional-tests -DskipTests=false -Dtest=RunnerTest test
-
+                                       '''
                                  }
           }
 
