@@ -1,0 +1,85 @@
+pipeline {
+    agent any
+    tools{
+        maven 'Maven'
+    }
+    stages {
+        stage('unit tests') {
+               steps {
+                        sh '''#!/bin/bash
+                                echo "starts running unit testing"
+                                mvn -pl hospital-main clean compile test
+                        '''
+
+            }
+        }
+
+        stage('integration tests') {
+                       steps {
+                                sh '''#!/bin/bash
+                                  echo "starts running integration testing"
+                                  mvn -pl hospital-main -Pfailsafe verify
+                                '''
+                       }
+        }
+
+         stage('hospital build jar') {
+                        steps {
+                                sh '''#!/bin/bash
+                                   echo "building project"
+                                   mvn -pl hospital-main clean package
+                                '''
+                        }
+         }
+
+         stage('sonarqube verify') {
+                        steps {
+                               sh '''#!/bin/bash
+                                  echo "verify by sonarqube"
+                                  withSonarQubeEnv('SonarQube'){
+                                     mvn clean verify sonar:sonar
+                                     }
+                               '''
+                        }
+         }
+
+          stage('sonarqube quality gate') {
+                                 steps {
+                                        sh '''#!/bin/bash
+                                           echo "quality gate sonarqube"
+                                           waitForQualityGate abortPipeline: true
+                                        '''
+                                 }
+                           }
+
+
+         stage('build docker image') {
+                        steps {
+                               sh '''#!/bin/bash
+                                  echo "building docker image"
+                                  docker build . -t alekckorsh/hospital
+                               '''
+                              }
+         }
+
+          stage('run docker container alekckorsh/hospital') {
+                                 steps {
+                                       sh '''#!/bin/bash
+                                           echo "running docker container"
+                                           docker run -d --rm -p 8085:8085 --name hospital-petclinic alekckorsh/hospital:latest
+                                       '''
+                                       }
+          }
+
+          stage('functional cucumber tests') {
+                                 steps {
+                                       sh '''#!/bin/bash
+                                          echo "starts running functional testing"
+                                          mvn -pl hospital-functional-tests -DskipTests=false -Dtest=RunnerTest test
+
+                                 }
+          }
+
+
+    }
+}
