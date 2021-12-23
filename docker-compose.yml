@@ -5,7 +5,7 @@ volumes:
 
 services:
     hospital_service:
-      build: hospital-main/
+      image: alekckorsh/hospital:latest
       restart: always
       ports:
       - 8085:8085
