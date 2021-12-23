@@ -31,7 +31,7 @@ pipeline {
                         steps {
                                sh '''#!/bin/bash
                                   echo "building docker image"
-                                 sudo docker build . -t alekckorsh/hospital
+                                 sudo docker build -S . -t alekckorsh/hospital
                                '''
                               }
         }
