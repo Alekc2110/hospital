@@ -31,7 +31,7 @@ pipeline {
                         steps {
                                sh '''#!/bin/bash
                                   echo "building docker image"
-                                  docker build . -t alekckorsh/hospital
+                                 sudo docker build . -t alekckorsh/hospital
                                '''
                               }
         }
@@ -47,7 +47,7 @@ pipeline {
                                  steps {
                                         sh '''#!/bin/bash
                                            echo "pushing docker image"
-                                           docker push alekckorsh/hospital:latest
+                                           sudo docker push alekckorsh/hospital:latest
                                         '''
                                        }
         }
