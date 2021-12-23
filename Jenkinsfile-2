@@ -1,0 +1,55 @@
+pipeline {
+    agent { label 'Server_Docker' }
+    tools {
+        maven 'Maven'
+    }
+    stages {
+       stage('run docker compose') {
+                                     steps {
+                                           sh '''#!/bin/bash
+                                               echo "running docker compose"
+                                               docker compose up -d
+                                           '''
+                                           }
+              }
+
+       stage('integration tests') {
+                              steps {
+                                       sh '''#!/bin/bash
+                                         echo "starts running integration testing"
+                                         mvn -pl hospital-main -Pfailsafe verify
+                                       '''
+                              }
+       }
+
+
+       stage('sonarqube verify') {
+                        steps {
+                               sh '''#!/bin/bash
+                                  echo "verify by sonarqube"
+                                  withSonarQubeEnv('SonarQube'){
+                                     mvn clean verify sonar:sonar
+                                     }
+                               '''
+                        }
+       }
+
+       stage('sonarqube quality gate') {
+                                 steps {
+                                        sh '''#!/bin/bash
+                                           echo "quality gate sonarqube"
+                                           waitForQualityGate abortPipeline: true
+                                        '''
+                                 }
+       }
+
+       stage('functional cucumber tests') {
+                                 steps {
+                                       sh '''#!/bin/bash
+                                          echo "starts running functional testing"
+                                          mvn -pl hospital-functional-tests -DskipTests=false -Dtest=RunnerTest test
+                                       '''
+                                 }
+       }
+    }
+}

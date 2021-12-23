@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+    tools{
+        maven 'Maven'
+    }
+    environment {
+    DOCKERHUB_CREDENTIALS = credentials('docker_hub_cred')
+    }
+    stages {
+        stage('unit tests') {
+               steps {
+                        sh '''#!/bin/bash
+                                echo "starts running unit testing"
+                                mvn -pl hospital-main clean compile test
+                        '''
+
+            }
+        }
+
+        stage('hospital build jar') {
+                        steps {
+                                sh '''#!/bin/bash
+                                   echo "building project"
+                                   mvn -pl hospital-main clean package
+                                '''
+                        }
+        }
+
+
+        stage('build docker image') {
+                        steps {
+                               sh '''#!/bin/bash
+                                  echo "building docker image"
+                                  docker build . -t alekckorsh/hospital
+                               '''
+                              }
+        }
+
+        stage('login to docker hub'){
+                       steps{
+                       sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                       }
+
+        }
+
+        stage('push docker image to dockerhub') {
+                                 steps {
+                                        sh '''#!/bin/bash
+                                           echo "pushing docker image"
+                                           docker push alekckorsh/hospital:latest
+                                        '''
+                                       }
+        }
+    }
+
+    post {
+            always {
+              sh 'docker logout'
+             }
+    }
+
+}
