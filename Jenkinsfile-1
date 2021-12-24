@@ -31,7 +31,6 @@ pipeline {
                         steps {
                                sh '''#!/bin/bash
                                echo "building docker image"
-
                                sudo docker build . -t alekckorsh/hospital
                                '''
                               }
@@ -39,7 +38,10 @@ pipeline {
 
         stage('login to docker hub'){
                        steps{
-                       sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                       sh '''#!/bin/bash
+                       echo $DOCKERHUB_CREDENTIALS_PSW
+                       docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+                       '''
                        }
 
         }
