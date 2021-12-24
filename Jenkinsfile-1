@@ -29,7 +29,9 @@ pipeline {
 
         stage('build docker image') {
                         steps {
-                               sh 'echo "building docker image" | sudo docker build . -t alekckorsh/hospital'
+                               sh 'echo "building docker image"
+                               export SUDO_ASKPASS=/usr/X11R6/bin/ssh-askpass
+                               sudo docker build . -t alekckorsh/hospital'
                               }
         }
 
