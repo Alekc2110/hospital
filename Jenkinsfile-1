@@ -45,10 +45,7 @@ pipeline {
 
         stage('push docker image to dockerhub') {
                                  steps {
-                                        sh '''#!/bin/bash
-                                           echo "pushing docker image"
-                                           sudo docker push alekckorsh/hospital:latest
-                                        '''
+                                        sh 'docker push alekckorsh/hospital:latest'
                                        }
         }
     }
