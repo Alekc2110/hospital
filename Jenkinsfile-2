@@ -8,7 +8,7 @@ pipeline {
                                      steps {
                                            sh '''#!/bin/bash
                                                echo "running docker compose"
-                                               sudo docker-compose up
+                                               sudo docker-compose up -d
                                            '''
                                            }
               }
