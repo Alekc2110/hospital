@@ -10,10 +10,10 @@ services:
       ports:
       - 8085:8085
       environment:
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=hospital
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
+        POSTGRES_PORT: 5432
+        POSTGRES_DB: "hospital"
+        POSTGRES_USER: "postgres"
+        POSTGRES_PASSWORD: "root"
 
 
 
