@@ -25,12 +25,13 @@ pipeline {
 
        stage('sonarqube verify') {
                         steps {
-                               sh '''#!/bin/bash
-                                  echo "verify by sonarqube"
-                                  withSonarQubeEnv('SonarQube'){
+                                  withSonarQubeEnv('SonarQube') {
+                                   sh '''#!/bin/bash
+                                     echo "verify by sonarqube"
                                      mvn clean verify sonar:sonar
+                                   '''
                                      }
-                               '''
+
                         }
        }
 
