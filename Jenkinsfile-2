@@ -37,10 +37,9 @@ pipeline {
 
        stage('sonarqube quality gate') {
                                  steps {
-                                        sh '''#!/bin/bash
-                                           echo "quality gate sonarqube"
-                                           waitForQualityGate abortPipeline: true
-                                        '''
+                                        timeout(time: 1, unit: 'HOURS') {
+                                        waitForQualityGate abortPipeline: true
+                                                       }
                                  }
        }
 
