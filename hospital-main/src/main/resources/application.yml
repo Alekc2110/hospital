@@ -5,7 +5,7 @@ spring:
   # Database
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/hospital
+    url: jdbc:postgresql://34.245.139.122:5432/hospital
     username: postgres
     password: root
     hikari:
