@@ -23,7 +23,7 @@ public class PatientApiStepDefinitions {
 
     @Given("I set GET patient service api endpoint")
     public void iSetGETPatientServiceApiEndpoint() {
-        resourceUrl = "http://34.245.139.122:8085/hospital/patients";
+        resourceUrl = "http://34.255.193.99:8085/hospital/patients";
     }
 
     @When("I send GET HTTP request to get list of patients")
@@ -44,7 +44,7 @@ public class PatientApiStepDefinitions {
 
     @Given("I set Post patient service api endpoint")
     public void iSetPostPatientServiceApiEndpoint() {
-        resourceUrl = "http://34.245.139.122:8085/hospital/patients";
+        resourceUrl = "http://34.255.193.99:8085/hospital/patients";
     }
 
     @When("I send POST HTTP request to add patient record")
@@ -68,7 +68,7 @@ public class PatientApiStepDefinitions {
 
     @Given("I set PUT patient service api endpoint for id {int}")
     public void iSetPUTPatientServiceApiEndpointForId(int id) {
-        resourceUrl = "http://34.245.139.122:8085/hospital/patients/" + id;
+        resourceUrl = "http://34.255.193.99:8085/hospital/patients/" + id;
     }
 
     @When("I send PUT HTTP request to update patient")

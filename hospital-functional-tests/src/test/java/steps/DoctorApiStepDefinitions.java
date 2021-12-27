@@ -25,7 +25,7 @@ public class DoctorApiStepDefinitions {
 
     @Given("I set GET doctor service api endpoint")
     public void iSetGETDoctorServiceApiEndpoint() {
-        resourceUrl = "http://34.245.139.122:8085/hospital/doctors";
+        resourceUrl = "http://34.255.193.99:8085/hospital/doctors";
     }
 
 
@@ -47,7 +47,7 @@ public class DoctorApiStepDefinitions {
 
     @Given("I set Post doctor service api endpoint")
     public void iSetPostDoctorServiceApiEndpoint() {
-        resourceUrl = "http://34.245.139.122:8085/hospital/doctors";
+        resourceUrl = "http://34.255.193.99:8085/hospital/doctors";
     }
 
     @When("I send POST HTTP request to add doctor record")
@@ -71,7 +71,7 @@ public class DoctorApiStepDefinitions {
 
     @Given("I set PUT doctor service api endpoint for id {int}")
     public void iSetPUTDoctorServiceApiEndpointForId(int id) {
-        resourceUrl = "http://34.245.139.122:8085/hospital/doctors/" + id;
+        resourceUrl = "http://34.255.193.99:8085/hospital/doctors/" + id;
     }
 
     @When("I send PUT HTTP request to update doctor")
