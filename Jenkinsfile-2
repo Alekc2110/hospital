@@ -55,7 +55,7 @@ pipeline {
 
      post {
              always {
-                  sh 'sudo docker stop hospital-pipeline-s_hospital_service_1'
+                  sh 'sudo docker-compose down | sudo docker rmi application postgres'
                  }
         }
 }
