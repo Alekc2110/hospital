@@ -3,6 +3,8 @@ version: "3.2"
 #volumes:
 #  pg_volume:
 
+
+
 services:
     hospital_service:
       image: alekckorsh/hospital:latest
@@ -14,6 +16,8 @@ services:
         POSTGRES_HOST: postgresdb
       links:
         - postgresdb
+
+
 
 
 
